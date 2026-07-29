@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+venv/
+backend_venv/
+frontend_venv/
+.venv/
+
+# Environment secrets
+.env
+.streamlit/secrets.toml
+
+# Databases
+*.db
+*.sqlite3
+
+# Uploaded files (user data — never commit)
+backend/uploads/
+
+# ML artifacts are intentionally committed (backend/app/ml_models/*.joblib)
+# so the app runs out of the box without a retraining step. Uncomment
+# below only if you'd rather regenerate them on every clone:
+# ml/artifacts/*.joblib
+# backend/app/ml_models/*.joblib
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
+
+# Docker
+docker-compose.override.yml

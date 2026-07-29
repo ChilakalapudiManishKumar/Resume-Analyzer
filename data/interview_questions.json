@@ -1,0 +1,72 @@
+{
+  "role_groups": {
+    "Data Scientist": "data_ml", "Machine Learning Engineer": "data_ml", "AI Engineer": "data_ml", "Data Analyst": "data_ml",
+    "Software Engineer": "software", "Backend Developer": "software", "Frontend Developer": "software", "Full Stack Developer": "software",
+    "Cloud Engineer": "cloud_devops", "DevOps Engineer": "cloud_devops",
+    "Cybersecurity Analyst": "cybersecurity",
+    "Business Analyst": "business_product", "Product Manager": "business_product", "UI/UX Designer": "business_product"
+  },
+  "technical": {
+    "data_ml": [
+      {"question": "Explain the bias-variance tradeoff.", "answer": "Bias is error from overly simple assumptions (underfitting); variance is error from sensitivity to training data noise (overfitting). Model complexity trades one for the other — the goal is the sweet spot minimizing total error on unseen data."},
+      {"question": "What's the difference between bagging and boosting?", "answer": "Bagging (e.g. Random Forest) trains models in parallel on bootstrapped samples and averages results to reduce variance. Boosting (e.g. XGBoost) trains models sequentially, each correcting the previous one's errors, reducing bias."},
+      {"question": "How do you handle missing data?", "answer": "Depends on the mechanism (MCAR/MAR/MNAR) and amount missing: options include deletion, mean/median/mode imputation, model-based imputation, or treating 'missing' as its own category — always documenting the choice since it affects downstream bias."},
+      {"question": "What is overfitting and how do you prevent it?", "answer": "The model memorizes training data instead of learning generalizable patterns. Prevented via cross-validation, regularization, simpler models, more data, or early stopping."},
+      {"question": "Explain precision vs recall and when you'd prioritize one.", "answer": "Precision = of predicted positives, how many are correct. Recall = of actual positives, how many were caught. Prioritize precision when false positives are costly (spam filters); recall when false negatives are costly (disease screening)."}
+    ],
+    "software": [
+      {"question": "Explain the difference between a process and a thread.", "answer": "A process has its own memory space; threads within a process share memory but have separate execution stacks — cheaper to create/switch but require careful synchronization."},
+      {"question": "What is Big-O notation and why does it matter?", "answer": "It describes how an algorithm's runtime/space scales with input size, letting you compare algorithm efficiency independent of hardware."},
+      {"question": "Explain REST API principles.", "answer": "Stateless client-server communication over HTTP using standard verbs (GET/POST/PUT/DELETE) on resource-based URLs, typically exchanging JSON."},
+      {"question": "What's the difference between SQL and NoSQL databases?", "answer": "SQL databases are relational with fixed schemas and strong consistency (joins, ACID); NoSQL databases (document/key-value/graph) offer flexible schemas and scale horizontally, trading some consistency guarantees."},
+      {"question": "Explain the concept of dependency injection.", "answer": "A pattern where an object's dependencies are provided externally rather than created internally — improves testability and decoupling (e.g. FastAPI's Depends())."}
+    ],
+    "cloud_devops": [
+      {"question": "What is Infrastructure as Code and why use it?", "answer": "Managing infrastructure through version-controlled config files (e.g. Terraform) instead of manual setup — enables repeatability, review, and rollback."},
+      {"question": "Explain the difference between a container and a VM.", "answer": "A VM virtualizes an entire OS on a hypervisor; a container shares the host OS kernel and packages just the app + dependencies — lighter weight and faster to start."},
+      {"question": "What is a CI/CD pipeline?", "answer": "Continuous Integration automatically builds/tests code on every commit; Continuous Deployment automatically ships passing builds to production — reduces manual error and speeds delivery."},
+      {"question": "How does Kubernetes handle scaling?", "answer": "Via Horizontal Pod Autoscaler, which adjusts the number of pod replicas based on observed metrics like CPU/memory usage."},
+      {"question": "What's the shared responsibility model in cloud security?", "answer": "The cloud provider secures the underlying infrastructure; the customer is responsible for securing what they configure and deploy on top of it (data, access controls, app-level security)."}
+    ],
+    "cybersecurity": [
+      {"question": "Explain the CIA triad.", "answer": "Confidentiality, Integrity, Availability — the three core goals security controls are designed to protect."},
+      {"question": "What's the difference between a vulnerability, a threat, and a risk?", "answer": "A vulnerability is a weakness; a threat is a potential cause of harm exploiting it; risk is the likelihood and impact of that threat materializing."},
+      {"question": "What is SIEM and why is it used?", "answer": "Security Information and Event Management aggregates and correlates logs across systems to detect and respond to security incidents in real time."},
+      {"question": "Explain the difference between symmetric and asymmetric encryption.", "answer": "Symmetric uses one shared key for encryption/decryption (fast, key distribution is the challenge); asymmetric uses a public/private key pair (slower, solves key distribution, used in TLS handshakes)."},
+      {"question": "What is a man-in-the-middle attack?", "answer": "An attacker secretly intercepts and possibly alters communication between two parties who believe they're communicating directly with each other."}
+    ],
+    "business_product": [
+      {"question": "How do you prioritize a product backlog?", "answer": "Common frameworks: RICE (Reach, Impact, Confidence, Effort) or MoSCoW — balancing user impact, business value, and delivery cost."},
+      {"question": "How would you measure the success of a new feature?", "answer": "Define success metrics up front tied to the feature's goal (adoption rate, retention lift, task completion time) and use A/B testing where feasible to isolate causal impact."},
+      {"question": "What's the difference between a wireframe and a prototype?", "answer": "A wireframe is a low-fidelity static layout showing structure; a prototype is an interactive (often higher-fidelity) simulation of the actual user flow."},
+      {"question": "How do you gather requirements from stakeholders with conflicting priorities?", "answer": "Facilitate structured discovery (interviews, workshops), map requirements to business goals and user needs, and use data/prioritization frameworks to resolve conflicts objectively rather than by seniority alone."},
+      {"question": "What makes good user research?", "answer": "Talking to real users (not just stakeholders), asking open-ended questions, observing behavior over stated preference, and iterating based on findings rather than confirming existing assumptions."}
+    ]
+  },
+  "coding": [
+    {"question": "Reverse a linked list.", "answer": "Iterate through the list maintaining prev/current pointers, reversing the 'next' pointer at each step. O(n) time, O(1) space."},
+    {"question": "Find the first non-repeating character in a string.", "answer": "Use a hash map to count character frequencies in one pass, then a second pass to find the first with count 1. O(n) time."},
+    {"question": "Check if two strings are anagrams.", "answer": "Sort both strings and compare (O(n log n)), or count character frequencies with a hash map and compare (O(n))."},
+    {"question": "Find the maximum subarray sum (Kadane's algorithm).", "answer": "Track a running sum, resetting to 0 whenever it goes negative, while tracking the maximum seen — O(n) single pass."}
+  ],
+  "hr": [
+    {"question": "Tell me about yourself.", "answer": "A concise walkthrough of relevant background, key skills, and what you're looking for next — tailored to the role, not a full life story."},
+    {"question": "Why do you want to work here?", "answer": "Shows you've researched the company — connect their mission/products to your specific skills and career goals."},
+    {"question": "What are your salary expectations?", "answer": "Research market rates for the role/location beforehand and give a researched range rather than a single fixed number."},
+    {"question": "Where do you see yourself in 5 years?", "answer": "Show ambition aligned with realistic growth paths at this type of company, not something disconnected from the role."}
+  ],
+  "behavioral": [
+    {"question": "Tell me about a time you disagreed with a teammate.", "answer": "Use the STAR method (Situation, Task, Action, Result) — focus on how you communicated and resolved it constructively."},
+    {"question": "Describe a time you failed and what you learned.", "answer": "Pick a genuine failure, own it honestly, and emphasize the concrete lesson/change in behavior afterward."},
+    {"question": "Tell me about a time you had to learn something quickly.", "answer": "Highlight your learning process (how you broke the problem down, resources used) not just the outcome."},
+    {"question": "Describe a time you managed competing priorities.", "answer": "Show how you assessed urgency/impact and communicated tradeoffs to stakeholders."}
+  ],
+  "scenario": [
+    {"question": "A production system just went down — what do you do first?", "answer": "Triage impact and stabilize first (rollback/mitigate), communicate status to stakeholders, then root-cause after the fire is out — not before."},
+    {"question": "A stakeholder wants a feature you believe is a bad idea — how do you handle it?", "answer": "Understand their underlying need, bring data/evidence for your concern, propose alternatives, and escalate respectfully if needed rather than silently complying or refusing."}
+  ],
+  "system_design": [
+    {"question": "Design a URL shortener.", "answer": "Key points: hash/base62-encode the long URL to a short key, store the mapping in a fast key-value store, handle collisions, add caching for popular redirects, and consider read-heavy scaling via replicas."},
+    {"question": "Design a rate limiter.", "answer": "Common approaches: token bucket or sliding window log/counter, typically implemented with Redis for shared state across servers, with clear policy on per-user vs per-IP limits."}
+  ]
+}

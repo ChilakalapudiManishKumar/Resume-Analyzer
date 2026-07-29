@@ -1,0 +1,4 @@
+model,rmse_lpa,mae_lpa,r2
+LinearRegression,1.999,1.396,0.8848
+RandomForest,1.834,1.299,0.9031
+XGBoost,1.337,0.953,0.9485

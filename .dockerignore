@@ -1,0 +1,11 @@
+backend_venv/
+frontend_venv/
+**/__pycache__/
+**/*.pyc
+**/.pytest_cache/
+backend/*.db
+backend/uploads/
+backend/.env
+frontend/venv/
+ml/
+*.zip

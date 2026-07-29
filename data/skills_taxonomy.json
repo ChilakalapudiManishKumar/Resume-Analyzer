@@ -1,0 +1,19 @@
+{
+  "_comment": "Flat list used for resume skill-matching in Phase 2. Phase 3 expands this into a role -> required_skills mapping for the skill-gap engine.",
+  "skills": [
+    "python", "java", "c++", "c", "javascript", "typescript", "sql", "r",
+    "html", "css", "react", "node.js", "django", "flask", "fastapi",
+    "spring boot", "pandas", "numpy", "scikit-learn", "tensorflow", "pytorch",
+    "keras", "xgboost", "matplotlib", "seaborn", "plotly", "power bi", "tableau",
+    "excel", "postgresql", "mysql", "mongodb", "redis", "docker", "kubernetes",
+    "aws", "azure", "gcp", "git", "github", "linux", "rest api", "graphql",
+    "machine learning", "deep learning", "nlp", "computer vision",
+    "data structures", "algorithms", "oop", "system design",
+    "spark", "hadoop", "airflow", "ci/cd", "jenkins", "terraform",
+    "figma", "ui/ux design", "agile", "scrum",
+    "product management", "stakeholder management", "user research",
+    "a/b testing", "jira", "penetration testing", "network security",
+    "siem", "risk assessment", "wireframing", "prototyping",
+    "requirements gathering", "data visualization", "statistics"
+  ]
+}

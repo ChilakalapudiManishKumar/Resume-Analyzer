@@ -1,0 +1,61 @@
+{
+  "_comment": "core_skills = strongly associated with this role (high sample probability). overlap_pool = skills that realistically show up on these resumes too, because roles blur in practice.",
+  "roles": {
+    "Data Scientist": {
+      "core_skills": ["python", "sql", "pandas", "numpy", "scikit-learn", "statistics", "machine learning", "data visualization"],
+      "overlap_pool": ["r", "tensorflow", "matplotlib", "seaborn", "excel", "power bi", "deep learning"]
+    },
+    "Machine Learning Engineer": {
+      "core_skills": ["python", "scikit-learn", "tensorflow", "pytorch", "machine learning", "deep learning", "docker"],
+      "overlap_pool": ["sql", "aws", "kubernetes", "airflow", "keras", "xgboost", "system design"]
+    },
+    "Data Analyst": {
+      "core_skills": ["sql", "excel", "power bi", "tableau", "python", "data visualization", "statistics"],
+      "overlap_pool": ["pandas", "numpy", "r", "matplotlib", "requirements gathering"]
+    },
+    "AI Engineer": {
+      "core_skills": ["python", "pytorch", "tensorflow", "deep learning", "nlp", "computer vision", "machine learning"],
+      "overlap_pool": ["docker", "kubernetes", "aws", "scikit-learn", "system design"]
+    },
+    "Software Engineer": {
+      "core_skills": ["java", "c++", "data structures", "algorithms", "oop", "git", "system design"],
+      "overlap_pool": ["python", "sql", "linux", "rest api", "agile"]
+    },
+    "Backend Developer": {
+      "core_skills": ["java", "python", "node.js", "sql", "rest api", "postgresql", "system design"],
+      "overlap_pool": ["django", "flask", "fastapi", "spring boot", "mongodb", "docker", "redis"]
+    },
+    "Frontend Developer": {
+      "core_skills": ["javascript", "typescript", "react", "html", "css", "git"],
+      "overlap_pool": ["node.js", "figma", "rest api", "agile"]
+    },
+    "Full Stack Developer": {
+      "core_skills": ["javascript", "react", "node.js", "sql", "rest api", "html", "css"],
+      "overlap_pool": ["python", "django", "flask", "mongodb", "docker", "typescript"]
+    },
+    "Cloud Engineer": {
+      "core_skills": ["aws", "azure", "gcp", "docker", "kubernetes", "terraform", "ci/cd"],
+      "overlap_pool": ["linux", "python", "jenkins", "system design"]
+    },
+    "Cybersecurity Analyst": {
+      "core_skills": ["network security", "penetration testing", "siem", "risk assessment", "linux"],
+      "overlap_pool": ["python", "aws", "azure", "ci/cd"]
+    },
+    "Business Analyst": {
+      "core_skills": ["excel", "sql", "requirements gathering", "stakeholder management", "data visualization", "power bi"],
+      "overlap_pool": ["python", "agile", "jira", "statistics"]
+    },
+    "Product Manager": {
+      "core_skills": ["product management", "stakeholder management", "requirements gathering", "agile", "jira", "a/b testing"],
+      "overlap_pool": ["sql", "data visualization", "user research", "wireframing"]
+    },
+    "UI/UX Designer": {
+      "core_skills": ["figma", "ui/ux design", "wireframing", "prototyping", "user research"],
+      "overlap_pool": ["html", "css", "a/b testing", "agile"]
+    },
+    "DevOps Engineer": {
+      "core_skills": ["docker", "kubernetes", "ci/cd", "jenkins", "terraform", "linux", "aws"],
+      "overlap_pool": ["python", "azure", "gcp", "system design"]
+    }
+  }
+}

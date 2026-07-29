@@ -1,0 +1,127 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  backend-tests:
+    runs-on: ubuntu-latest
+
+    # Real PostgreSQL service container — CI runs tests against actual
+    # Postgres, not just SQLite, matching how Phase 5's migration work
+    # was verified locally.
+    services:
+      postgres:
+        image: postgres:16
+        env:
+          POSTGRES_USER: career_user
+          POSTGRES_PASSWORD: career_pass
+          POSTGRES_DB: career_platform_test
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U career_user -d career_platform_test"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: backend/requirements.txt
+
+      - name: Install backend dependencies
+        working-directory: backend
+        run: |
+          pip install -r requirements.txt
+          pip install email-validator pytest-cov
+
+      - name: Run Alembic migrations against Postgres
+        working-directory: backend
+        env:
+          DATABASE_URL: postgresql+psycopg2://career_user:career_pass@localhost:5432/career_platform_test
+        run: python -m alembic upgrade head
+
+      - name: Run backend test suite (SQLite path — the default dev config)
+        working-directory: backend
+        run: python -m pytest tests/ --cov=app --cov-report=term-missing -v
+
+      - name: Smoke-test app boot against real Postgres
+        working-directory: backend
+        env:
+          DATABASE_URL: postgresql+psycopg2://career_user:career_pass@localhost:5432/career_platform_test
+        run: |
+          python -c "
+          from fastapi.testclient import TestClient
+          from app.main import app
+          client = TestClient(app)
+          r = client.get('/health')
+          assert r.status_code == 200, r.text
+          print('Postgres boot check passed:', r.json())
+          "
+
+  ml-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install ML dependencies
+        run: pip install scikit-learn==1.8.0 xgboost==3.3.0 pandas numpy joblib pytest
+
+      - name: Run ML pipeline tests
+        working-directory: ml
+        run: python -m pytest tests/ -v
+
+  frontend-import-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+          cache-dependency-path: frontend/requirements.txt
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: pip install -r requirements.txt
+
+      - name: Import-test shared components (real imports, not just syntax)
+        working-directory: frontend
+        run: |
+          python -c "
+          from components import api_client, charts, cards
+          print('components import cleanly:', api_client.API_BASE_URL)
+          "
+
+      - name: Syntax-check page files (pages/ need a live Streamlit run
+          context to fully import-test, so this checks syntax only)
+        working-directory: frontend
+        run: |
+          python -c "
+          import ast, sys
+          from pathlib import Path
+          for f in Path('pages').glob('*.py'):
+              try:
+                  ast.parse(f.read_text())
+              except SyntaxError as e:
+                  print(f'Syntax error in {f}: {e}')
+                  sys.exit(1)
+          print('All page files parse cleanly.')
+          "
